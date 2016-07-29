@@ -51,13 +51,12 @@ The interface for all four binaries (OF, Depth for RGB and GrayScale images) is 
 VARIANT 1 (Uses operating point 2 of the paper, automatically selects coarsest scale):
 ```
 ./run_*_* image1.png image2.png outputfile
-
+```
 
 VARIANT 2 (Manually select operating point X=1-4, automatically selects coarsest scale):
 ``` 
 ./run_*_* image1.png image2.png outputfile X
 ```
-
 
 VARIANT 3 (Set all parameters explicitly):
 ```
@@ -70,7 +69,6 @@ Example for variant 3 using operating point 2 of the paper:
 ```
 
 Parameters:
-```
 1. Coarsest scale                               (here: 5)
 2. Finest scale                                 (here: 3)
 3/4. Min./Max. iterations                       (here: 12)
@@ -86,7 +84,7 @@ Parameters:
 18. Number of TV solver iterations              (here: 3)
 19. TV SOR value                                (here: 1.6)
 20. Verbosity                                   (here: 2) Alternatives: 0/no output, 1/only flow runtime, 2/total runtime
-```
+
 
 The optical flow output is saves as .flo file.
 (http://sintel.is.tue.mpg.de/downloads)
