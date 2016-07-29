@@ -179,7 +179,7 @@ void ConstructImgPyramide(const cv::Mat & img_ao_fmat, cv::Mat * img_ao_fmat_pyr
 
 int AutoFirstScaleSelect(int imgwidth, int fratio, int patchsize)
 {
-  return std::max(0,(int)std::round(log2((2.0f*(float)imgwidth) / ((float)fratio * (float)patchsize))));
+  return std::max(0,(int)std::floor(log2((2.0f*(float)imgwidth) / ((float)fratio * (float)patchsize))));
 }
 
 int main( int argc, char** argv )
