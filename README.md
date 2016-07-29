@@ -28,9 +28,9 @@ The program was only tested under a 64-bit Linux distribution.
 SSE instructions from built-in X86 functions for GNU GCC were used.
 
 The following will build four binaries: 
-Two for optical flow (run_OF_*) and two for depth from stereo (run_DE_*).
-For each problem, a fast variant operating on intensity images (run_*_INT) and 
-a slower variant operating on RGB images (run_*_RGB) is provided.
+Two for optical flow (`run_OF_*`) and two for depth from stereo (`run_DE_*`).
+For each problem, a fast variant operating on intensity images (`run_*_INT`) and 
+a slower variant operating on RGB images (`run_*_RGB`) is provided.
 
 ```
 mkdir build
@@ -40,7 +40,7 @@ make -j
 ```
 
 The code depends on Eigen3 and OpenCV. However, OpenCV is only used for image loading, 
-scaling and gradient computation (run_dense.cpp). It can easily be replaced by other libraries.
+scaling and gradient computation (`run_dense.cpp`). It can easily be replaced by other libraries.
       
       
       
