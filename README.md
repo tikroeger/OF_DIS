@@ -51,16 +51,21 @@ The interface for all four binaries (OF, Depth for RGB and GrayScale images) is 
 VARIANT 1 (Uses operating point 2 of the paper, automatically selects coarsest scale):
 ```
 ./run_*_* image1.png image2.png outputfile
-```
+
 
 VARIANT 2 (Manually select operating point X=1-4, automatically selects coarsest scale):
-./run_*_* image1.png image2.png outputfile X
+``` ./run_*_* image1.png image2.png outputfile X  ```
+
 
 VARIANT 3 (Set all parameters explicitly):
+```
 ./run_*_* image1.png image2.png outputfile
+```
 
 Example for variant 3 using operating point 2 of the paper:
+```
 ./run_OF_INT in1.png int2.png out.flo 5 3 12 12 0.05 0.95 0 8 0.40 0 1 0 1 10 10 5 1 3 1.6 2
+```
 
 Parameters:
 1. Coarsest scale                               (here: 5)
