@@ -1,4 +1,4 @@
-Fast Optical Flow using Dense Inverse Search (DIS)
+# Fast Optical Flow using Dense Inverse Search (DIS) #
 
 Our code is released only for scientific or personal use.
 Please contact us for commercial use.
@@ -22,7 +22,7 @@ Is you use the variational refinement, please additionally cite:
   
   
   
-### Compiling ###
+## Compiling ##
 
 The program was only tested under a 64-bit Linux distribution.
 SSE instructions from built-in X86 functions for GNU GCC were used.
@@ -32,10 +32,12 @@ Two for optical flow (run_OF_*) and two for depth from stereo (run_DE_*).
 For each problem, a fast variant operating on intensity images (run_*_INT) and 
 a slower variant operating on RGB images (run_*_RGB) is provided.
 
-      mkdir build
-      cd build
-      cmake ../
-      make -j
+```
+mkdir build
+cd build
+cmake ../
+make -j
+```
 
 The code depends on Eigen3 and OpenCV. However, OpenCV is only used for image loading, 
 scaling and gradient computation (run_dense.cpp). It can easily be replaced by other libraries.
@@ -43,11 +45,13 @@ scaling and gradient computation (run_dense.cpp). It can easily be replaced by o
       
       
       
-### Usage ###
+## Usage ##
 The interface for all four binaries (OF, Depth for RGB and GrayScale images) is the same.
 
 VARIANT 1 (Uses operating point 2 of the paper, automatically selects coarsest scale):
+```
 ./run_*_* image1.png image2.png outputfile
+```
 
 VARIANT 2 (Manually select operating point X=1-4, automatically selects coarsest scale):
 ./run_*_* image1.png image2.png outputfile X
@@ -88,7 +92,7 @@ NOTES:
 
 
 
-### Bugs and extensions ###
+## Bugs and extensions ##
 
 If you find bugs, etc., please feel free to contact me.
 Contact details are available on my webpage.
@@ -96,14 +100,14 @@ http://www.vision.ee.ethz.ch/~kroegert/
 
 
 
-### History ###
+## History ##
 
 July 2016 v1.0.0 - Initial Release
 
 
 
 
-### LICENCE CONDITIONS ###
+## LICENCE CONDITIONS ##
 
 GPLv3: http://gplv3.fsf.org/
 
