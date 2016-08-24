@@ -232,7 +232,7 @@ void PatClass::LossComputeErrorImage(Eigen::Matrix<float, Eigen::Dynamic, 1>* pa
     for (int i=op->novals/4; i--; ++pd, ++pa, ++te, ++pw)
     {
       (*pd) = (*pa)-(*te);  // difference image
-      (*pw) =  __builtin_ia32_andnps(op->negzero,  (*pd) );
+      (*pw) = __builtin_ia32_andnps(op->negzero,  (*pd) );
     }
   }
   else if (op->costfct==1) // L1 cost function
@@ -240,8 +240,8 @@ void PatClass::LossComputeErrorImage(Eigen::Matrix<float, Eigen::Dynamic, 1>* pa
     for (int i=op->novals/4; i--; ++pd, ++pa, ++te, ++pw)
     {
       (*pd) = (*pa)-(*te);   // difference image
-      (*pw) = __builtin_ia32_andnps(op->negzero,  (*pd) );
       (*pd) = __builtin_ia32_orps( __builtin_ia32_andps(op->negzero,  (*pd) )  , __builtin_ia32_sqrtps (__builtin_ia32_andnps(op->negzero,  (*pd) )) );  // sign(pdiff) * sqrt(abs(pdiff))
+      (*pw) = __builtin_ia32_andnps(op->negzero,  (*pd) );
     }
   }
   else if (op->costfct==2) // Pseudo Huber cost function
@@ -249,8 +249,6 @@ void PatClass::LossComputeErrorImage(Eigen::Matrix<float, Eigen::Dynamic, 1>* pa
     for (int i=op->novals/4; i--; ++pd, ++pa, ++te, ++pw)
     {
       (*pd) = (*pa)-(*te);   // difference image
-      (*pw) = __builtin_ia32_andnps(op->negzero,  (*pd) );
-      
       (*pd) = __builtin_ia32_orps(__builtin_ia32_andps(op->negzero,  (*pd) ), 
                                   __builtin_ia32_sqrtps (
                                     __builtin_ia32_mulps(                                                                                         // PSEUDO HUBER NORM
@@ -258,6 +256,7 @@ void PatClass::LossComputeErrorImage(Eigen::Matrix<float, Eigen::Dynamic, 1>* pa
                                           op->normoutlier_tmp2bsq)                                                                                                // PSEUDO HUBER NORM
                                      )
                                     ); // sign(pdiff) * sqrt( 2*b^2*( sqrt(1+abs(pdiff)^2/b^2)+1)  )) // <- looks like this without SSE instruction
+      (*pw) = __builtin_ia32_andnps(op->negzero,  (*pd) );                                    
     }
   }
 }
@@ -265,7 +264,7 @@ void PatClass::LossComputeErrorImage(Eigen::Matrix<float, Eigen::Dynamic, 1>* pa
 void PatClass::OptimizeComputeErrImg()
 {
   getPatchStaticBil(im_bo->data(), &(pc->pt_iter), &(pc->pdiff));
-      
+
   // Get photometric patch error
   LossComputeErrorImage(&pc->pdiff, &pc->pweight, &pc->pdiff, &tmp);
 

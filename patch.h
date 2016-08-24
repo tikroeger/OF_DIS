@@ -23,7 +23,7 @@ typedef struct
           
   // reference/template patch 
   Eigen::Matrix<float, Eigen::Dynamic, 1> pdiff; // image error to reference image
-  Eigen::Matrix<float, Eigen::Dynamic, 1> pweight; 
+  Eigen::Matrix<float, Eigen::Dynamic, 1> pweight; // absolute error image
 
   #if (SELECTMODE==1) // Optical Flow
   Eigen::Matrix<float, 2, 2> Hes; // Hessian for optimization
