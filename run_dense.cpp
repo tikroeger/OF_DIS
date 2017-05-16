@@ -137,8 +137,8 @@ void ConstructImgPyramide(const cv::Mat & img_ao_fmat, cv::Mat * img_ao_fmat_pyr
         img_ao_fmat_pyr[i] = img_ao_fmat.clone();
         #elif (SELECTCHANNEL==2)   // use gradient magnitude image as input
         cv::Mat dx,dy,dx2,dy2,dmag;
-        cv::Sobel( img_ao_fmat, dx, CV_32F, 1, 0, 1, 1, 0, cv::BORDER_DEFAULT );
-        cv::Sobel( img_ao_fmat, dy, CV_32F, 0, 1, 1, 1, 0, cv::BORDER_DEFAULT );
+        cv::Sobel( img_ao_fmat, dx, CV_32F, 1, 0, 3, 1/8.0, 0, cv::BORDER_DEFAULT );
+        cv::Sobel( img_ao_fmat, dy, CV_32F, 0, 1, 3, 1/8.0, 0, cv::BORDER_DEFAULT );
         dx2 = dx.mul(dx);
         dy2 = dy.mul(dy);
         dmag = dx2+dy2;
@@ -153,8 +153,8 @@ void ConstructImgPyramide(const cv::Mat & img_ao_fmat, cv::Mat * img_ao_fmat_pyr
 	
       if ( getgrad ) 
       {
-        cv::Sobel( img_ao_fmat_pyr[i], img_ao_dx_fmat_pyr[i], CV_32F, 1, 0, 1, 1, 0, cv::BORDER_DEFAULT );
-        cv::Sobel( img_ao_fmat_pyr[i], img_ao_dy_fmat_pyr[i], CV_32F, 0, 1, 1, 1, 0, cv::BORDER_DEFAULT );
+        cv::Sobel( img_ao_fmat_pyr[i], img_ao_dx_fmat_pyr[i], CV_32F, 1, 0, 3, 1/8.0, 0, cv::BORDER_DEFAULT );
+        cv::Sobel( img_ao_fmat_pyr[i], img_ao_dy_fmat_pyr[i], CV_32F, 0, 1, 3, 1/8.0, 0, cv::BORDER_DEFAULT );
         img_ao_dx_fmat_pyr[i].convertTo(img_ao_dx_fmat_pyr[i], CV_32F);
         img_ao_dy_fmat_pyr[i].convertTo(img_ao_dy_fmat_pyr[i], CV_32F);
       }
